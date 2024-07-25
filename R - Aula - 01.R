@@ -55,4 +55,15 @@ is.vector(opcoes)
 mode(opcoes)
 
 e <- list("Davi", "Paloma", "8", "Anos", c(0, 8, 16, 24, 32, 40))
-e[[5]][4]
+e[[5]][5]
+
+#matriz é um vetor de 2 dimensoes, tem que ter sempre os mesmos tipos de dados
+
+m <- matrix(1:9, nrow = 3)
+m
+class(m)
+#consultar o item da matriz
+m[1,3]
+
+m[1,3] <- 8
+m[1,3]
