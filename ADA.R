@@ -48,3 +48,24 @@ cuts <- cut(submits, breaks = c(0.00, 0.17, 0.34, 0.51, 0.68, 0.85, 1.00), inclu
 
 frequenciaAbsoluta <- table(cuts)
 frequenciaAbsoluta
+
+frequenciaAbsolutaAcumulada <- cumsum(frequenciaAbsoluta)
+frequenciaAbsolutaAcumulada[7] <- NA
+frequenciaAbsolutaAcumulada
+
+frequenciaRelativa <- round(100*prop.table(frequenciaAbsoluta), digits=2)
+frequenciaRelativa
+
+frequenciaRelativaAcumulada <- cumsum(frequenciaRelativa)
+frequenciaRelativaAcumulada
+
+fi <- c(frequenciaAbsoluta, sum(frequenciaAbsoluta))
+Fi <- c(frequenciaAbsolutaAcumulada, NA)
+fri <- c(frequenciaRelativa, sum(frequenciaRelativa))
+Fri <- c(frequenciaRelativaAcumulada, NA)
+names(frequenciaAbsoluta)[7] <- "TOTAL"
+
+names(frequenciaAcumulada)[6] <- "100.00"
+
+tabelaFrequencia <- cbind(frequenciaAbsoluta, frequenciaRelativa, frequenciaAcumulada)
+tabelaFrequencia
