@@ -56,6 +56,14 @@ y <- pbinom(0:6, 6, 1/3)
 barplot(x, col=1:7, main="Binomial")
 barplot(y, col=1:7, main=" Binomial Acumulada ")
 
+#P = a probabilidade acumulada que queremos testar
+#qbinom(P,n,p)
+
+#Ex: Jogamos uma moeda 10 vezes, com 0.5 de P(s) de obter cara
+#Queremos saber o número mínimo de sucessos k | a probabilidade
+#acumulada de obter até k sucessos seja 90% ou mais.
+qbinom(0.9, 10, 0.5)
+
 #Poisson - Usada para modelar a ocorrencia de eventos discretos
 #dentro de um intervalo de tempo ou espaço.
 
@@ -79,6 +87,48 @@ dpois(2, 10)
 
 #c) Qual P(x) da capacidade da mesa ser ultrapassada, sabendo
 #que a capacidade da mesma eh 10/min
-FALTA RESPONDER
+  #lambda = 5 -> Frequencia de 1 minuto
+  #x = 10 -> número de sucessos
+#False é basicamente quando queremos 1 - p
+ppois(10, 5, FALSE)
 
+  #Ex: Num deposito chegam 2,8 caminhoes/hora, determine a probabilidade
+#de chegarem 2 ou mais caminhões.
+  #lambda = 2,8/hora
 
+#a)Em um periodo de 0,5 horas
+#Aqui x = 1 para indicar que queremos valores maiores que 1,
+#ou seja, pelo menos 2.
+ppois(1, 1.4, FALSE)
+
+#b)Em um período de 1 hora
+ppois(1, 2.8, FALSE)
+
+#c)Em um período de 2 horas
+ppois(1, 5.6, FALSE)
+
+  #Ex: A média de alunos aprovados é 23 alunos.
+#lambda = 23
+#a) Qual P(x = 17)?
+dpois(17, 23)
+
+#c) Qual P(x <= 19)?
+ppois(19, 23)
+
+#d) Qual P(x > 19)?
+ppois(19, 23, FALSE)
+
+#e) Quantidade de aprovados se a probabilidade acumulada
+#for de 80%
+qpois(p = 0.80, lambda = 23)
+
+#Ex: Numero de afogamentos por fim de semana é de 2 para cada 50k habitantes
+#a) Qual P(x = 5 p/ 200k habitantes)
+dpois(5, (2/50000) * 200000)
+
+#b) 112.500 habitantes ocorram pelo menos 3 afogamentos?
+ppois(2, ((2/50000) * 112500), FALSE)
+
+#Média = lambda
+#Variância = lambda
+#Desvio padrão = lambda^(1/2)
