@@ -89,6 +89,7 @@ media <- mean(gastos_dia) ; media
 
 # ----------- mostrando os resultados na mesma linha -------------
 
+?cat
 cat ( "Soma dos Gastos =", total," e Média = ", mean(gastos_dia))
 
 cat (total, minimo)

@@ -1,5 +1,5 @@
 # ----------------------------
-## Distribuição de Frequência
+## Distribui??o de Frequ?ncia
 # ----------------------------
 
 rm(list = ls()) ## Limpar variaveis
@@ -44,12 +44,12 @@ Estadoc <- read.csv("Estadocivil.csv", header = TRUE,
 
 str(Estadoc)
 
-# Outra opção ...
+# Outra op??o ...
 # Importando dados pelo RStudio --> File  Import Dataset From Text(base)
 
 Estadoc <- Estadocivil
 
-# Outra opçao ... Ler da area de transferencia do Windows
+# Outra op?ao ... Ler da area de transferencia do Windows
 
 rm(list = ls())
 
@@ -82,12 +82,12 @@ TabResul
 
 bar_pos <- barplot(Freq, 
                    col = c ("Yellow", "Orange", "Green", "Blue"), 
-                   main = "Distribuição do Estado Civil",
+                   main = "Distribui??o do Estado Civil",
                    xlab = "Estado Civil",
                    ylab = "Quantidade", 
-                   ylim = c(0, max(Freq) + 6)) # Adicionando rótulos aos valores
+                   ylim = c(0, max(Freq) + 6)) # Adicionando r?tulos aos valores
 
-# colocando valores das frequencias no gráfico
+# colocando valores das frequencias no gr?fico
 text(x = bar_pos, 
      y = Freq, 
      labels = Freq, 
@@ -96,7 +96,7 @@ text(x = bar_pos,
      col = "black")  # Cor do texto 
 
 # ------------------
-# Gráfico de pizza
+# Gr?fico de pizza
 
 # Cores para as fatias
 
@@ -105,7 +105,7 @@ cores <- rainbow(length(Freq))
 cores <- c ("Yellow","Orange","Green","Blue") # ou definir as cores
 
 pie(Freq, col = cores, 
-    main = "Gráfico de Pizza - Estado Civil")
+    main = "Gr?fico de Pizza - Estado Civil")
 
 # ------------------
 ## Valores Agrupados
@@ -282,7 +282,7 @@ IMC <- read.table ("IMCvalores.csv", header = TRUE, sep = ";" , dec=",")
 
 limitesclas <- quantile(IMC$IMCplan)
 
-classes<-c(" Até Q1", " Entre (Q1 e Q2)", 
+classes<-c(" At? Q1", " Entre (Q1 e Q2)", 
            " Entre (Q2 e Q3)", " Supeior a Q3")
 Freq.IMC.cut <- table( cut (IMC$IMCplan, breaks = limitesclas, right = FALSE,
                             labels = classes,include.lowest = TRUE))  
@@ -328,7 +328,7 @@ hist(altura, breaks = c (1.3, 1.5, 1.6, 1.8, 1.9),
 par (mfrow = c (1,1))
 
 h <- hist(altura,  
-          main = "Altura dos alunos do Ensino Médio", 
+          main = "Altura dos alunos do Ensino M?dio", 
           xlab = "Altura dos alunos", ylab = "Freq. Absoluta", 
           col = c("violet"), border = FALSE, 
           xlim = c(1.2,2), ylim = c(0,9),

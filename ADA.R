@@ -76,6 +76,7 @@ write.table(tabelaFrequencia, file = "tabela_frequencia_media_geral_ADA.csv", se
 
 submits <- sort(submits)
 submits
+histograma <- hist(submits)
 histograma <- hist(submits,
                    breaks = seq(0, max(submits, na.rm = TRUE) + 0.17, by = 0.17),# Intervalos de 0.17
                    include.lowest = TRUE,
@@ -148,6 +149,8 @@ print(na)
 
 submits <- sort(neo_vector[2,])
 submits
+
+hist(submits)
 histograma <- hist(submits,
                    breaks = seq(0, max(submits, na.rm = TRUE) + 0.17, by = 0.17),# Intervalos de 0.17
                    include.lowest = TRUE,
