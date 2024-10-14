@@ -339,3 +339,49 @@ qnorm(.95, 120, 15)
 #Ou seja, media = 220, dp = 16^(1/2) -> 4
 #a) P(X <= k) = 0.01
 qnorm(.01, 220, 4)
+
+#Combinação linear de distribuições normais
+
+#Em uma empresa, a montagem de uma peça é feita em duas etapas
+#Os tempos são independentes e tem as seguintes distribuições
+#x1 = N(75 seg, 16,81 seg^2)
+#x2 = N(129 seg, 106,09 seg^2)
+
+#Para responder essa questão, precisamos recalcular a média
+#e o dp.
+
+# E(X) = 75 + 129 = 204
+# DP = (16,81 + 106,06)^(1/2) = (122,90)^(1/2) -> 11.08
+
+#a) Qual P(x < 200)
+pnorm(200, 204, 11.08)
+
+#Máquina enche latas baseada em pesos brutos. O peso bruto
+#tem distribuição normal com media = 1000g e dp = 20g
+#As latas tem peso bruto com media = 90g e dp = 10g
+
+#E(x) = 1000 - 90 = 910
+#dp = (20^2 + 10^2)^(1/2) = 500^(1/2) = 22.36
+
+#a) P(x < 850g)
+pnorm(850, 910, 22.36)
+
+#b) P(x > 870g)
+pnorm(870, 910, 22.36, F)
+
+#c) P(860 <= x <= 920)
+pnorm(920, 910, 22.36) - pnorm(860, 910, 22.36)
+
+#Um elevador tem resistencia em distribuição normal com média de 300kg e dp = 10kg
+#Se a carga supera a resistencia um freio é acionado.
+#Numa viagem com 4 pessoas, elas tem media = 70kg e dp = 13kg
+
+#media 4 pessoas = 70 * 4 = 280
+#dp 4 pessoas = (13^2 * 4)^(1/2) = 676^(1/2) = 26kg
+
+#Nova media = 300 - 280
+#Nova dp = (13^2 + 26^2)^(1/2) = 776^(1/2) = 27.86kg
+
+#a) Qual P de usar p freio de emergencia? P(T < 0)
+pnorm(0, 20, 27.86)
+
