@@ -1,3 +1,10 @@
+#Comandos R
+# d -> calcula a densidade de probabilidade f(x) no ponto;
+# p -> calcula a função de probabilidade acumulada F(x) no ponto;
+# q -> calcula o quantil correspondente a uma dada probabilidade
+#(inversa da função distribuição acumulada);
+# r -> retira uma amostra aleatória da distribuição.
+
 #Distribuicoes discretas
 
 #Uniforme
@@ -15,6 +22,7 @@
   #Variancia = P(S) + P(F)
 
 #Binomial -> (Combinação de n,K) * p^k * p^(n-k)
+#(combinalçao de n,k) = choose(n,k)
 # n = numero de tentativas
 # k = numero de vezes que ocorreu o sucesso
 # p = probabilidade de sucesso
@@ -132,3 +140,202 @@ ppois(2, ((2/50000) * 112500), FALSE)
 #Média = lambda
 #Variância = lambda
 #Desvio padrão = lambda^(1/2)
+
+#Distribuicoes continuas
+
+#Distribuicao uniforme continua
+#Esperança = (b + a)/2
+#Variancia = [(b - a)^2]/12
+#Desvio padrao = variancia^(1/2)
+#Distribuicao acumulativa = [x/(b-a)] - [a/(b-a)] | a <= x <= b
+
+#Ex: Uma máquina envasa detergente líquido de forma que o volume
+#tem distribuição Uniforme Contínua com 4900 ≤ y ≤ 5050 ml.
+
+#a) Qual a media e variancia do volume de detergente?
+Media <- (5050+4900)/2 
+Variancia <- ((5050-4900)^2)/12
+
+#b) Qual a proporção de embalagens com menos de 5000ml?
+#punif(x, min, max)
+# x = numero que queremos saber a porcentagem
+# min e max = Minimo e maximo 
+punif(5000, 4900, 5050)
+
+#Ex: Min 5, Max 10, calcular:
+#a)P(X < 7)
+punif(7, 5, 10)
+
+#b)P(X > 8.5)
+punif(8.5, 5, 10, FALSE)
+
+#c) P(8 < x < 9)
+punif(9, 5, 10) - punif(8, 5, 10)
+
+#Ex: Latas de coca-cola são enchidas num processo automático segundo uma
+#distribuição uniforme no intervalo (em ml) [345,355].
+
+#c) Qualquer lata com volume 4 ml abaixo da média pode gerar
+#reclamação do consumidor e com volume 4 ml acima da média pode
+#transbordar no momento de abertura, devido à pressão interna. Qual é
+#a proporção de latas problemáticas?
+punif(346,345, 355) + punif(354, 345, 355, F) #F = FALSE
+
+#Distribuiçãp normal
+# u = média
+# o = desvio padrão
+# x = O valor que queremos saber a porcentagem
+
+#pnorm(x, u, o)
+
+#Ex: Se dissermos que a altura média do homem brasileiro adulto é de 1,70 m, e
+#desvio padrão é de 5 cm, estaremos dizendo:
+
+#a) Calcule a % de homens com a altura entre 165 e 175.
+pnorm(175, 170, 5) - pnorm(165, 170, 5)
+
+#Ex: Os resultados do experimento ormam uma VA com distribuição normal,
+#com média de 40 e desvio padrão de 10
+#a) Qual P(x <= 50)
+pnorm(50, 40, 10)
+  #Caso eu tenha o Z ao invés dos dados, posso fazer
+pnorm(1) #Vai me gerar o mesmo resultado.
+
+#Plotando o gráfico dessa questão
+x <- seq(5, 75) #Eixo X de 5 
+y <- dnorm(x, 40, 10) #Calcula a densidade para cada valor de x
+#usando a distribuição normal com esses parametros
+plot(x, y, type = "l") #plota a função de densidade normal como uma linha 
+#(indicada pelo argumento type = "l").
+i <- x <= 50
+polygon(c(0,x[i],50), c(0,y[i],0), col="red") 
+#Nas 2 linhas acima estamos destacando x <= 50
+p <- pnorm(q = 50, mean = 40, sd = 10)
+text(40, 0.02, round(p, digits = 5))#Plotando o texto no gráfico
+#text(x, y, o que será printado e casas decimais)
+
+#b) Qual P(x >= 35)
+pnorm(35, 40, 10, F)
+
+#c) Qual P(25 >= x <= 60)
+pnorm(60, 40, 10) - pnorm(25, 40, 10)
+
+#Plot de gráfico
+x <- seq(5, 75)
+y <- dnorm(x, 40, 10)
+plot(x, y, type = "l")
+i <- x >= 25 & x <= 60
+polygon(c(25, x[i], 60), c(0, y[i], 0), col="yellow")
+p <- pnorm(q = 60, mean = 40, sd = 10) - pnorm(q = 25, mean = 40, sd = 10)
+text(40, 0.015, round(p, digits = 5))
+
+#d) Qual P(x <= 30 & x >= 55)
+pnorm(30, 40, 10) + pnorm(55, 40, 10, F)
+
+x <-seq(5, 75)
+y <- dnorm(x, 40, 10)
+plot(x, y, type="l")
+i1 <- x <= 30
+i2 <- x >=55
+polygon(c(0, x[i1], 30), c(0, y[i1], 0), col="red")
+polygon(c(55, x[i2], 75), c(0, y[i2], 0), col="red")
+p1 <- pnorm(30, 40, 10)
+p2 <- pnorm(55, 40, 10, F)
+text(20, 0.01, round(p1, digits = 4))
+text(60, 0.01, round(p2, digits = 4))
+
+#Ex: Durabilidade de um pneu é a distribuição normal
+#com media = 60000km e dp = 10000km
+
+#a) Qual P(x > 75000)?
+pnorm(75000, 60000, 10000, F)
+
+#se ele desse o z, que era z = 1,5
+#Como queremos saber x > 75k, utilizaremos lower.tail
+#Ou seja, o nosso Z terá sinal invertido
+pnorm(-1.5)
+
+#b) Qual P(50000 >= x >= 70000)
+pnorm(70000, 60000, 10000) - pnorm(50000, 60000, 10000)
+
+#d) Qual P(x = 70000)
+#P(X = 70000) = 0
+#Isso ocorre porque, em distribuições contínuas, a probabilidade associada a um
+#único ponto é infinitesimalmente pequena (tende a zero).
+
+#e) De quantos km precisamos para que somente 1% dos pneus sejam selecionados?
+#P(X < x) = 0.01
+#qnorm(p, media, dp) -> Descobrir o número que representa a uma probabilidade
+#p = a probabilidade que queremos achar o número que a representa
+qnorm(.01, 60000, 10000)
+
+#Ex: Suponha que as amplitudes de vida de dois aparelhos
+#elétricos, D1 e D2, tenham distribuições N(42, 6^2) e N(45, 3^2)
+#respectivamente. Se os aparelhos são feitos para ser usados por um período de 45 horas, responda.
+
+#a) Qual aparelho deverá ser escolhido?
+a1 <- pnorm(45, 42, 6, F)
+a2 <- pnorm(45, 45, 3, F)
+a1;a2
+#a1 = .69 e a2 = .5
+#Logo, a resposta é aparelho 1
+
+#b) E se for por um período de 49 horas?
+pnorm(49, 42, 6, F)
+pnorm(49, 45, 3, F)
+
+#Ex: O diametro do eixo principal de um disco rigido tem distribuição normal
+#com media = 25.08 e dp = 0.05. Se as especificações para esse eixo
+#são 25 +- 0.15, determine o percentual de unidades em conformidade.
+
+pnorm(25.15, 25.08, 0.05) - pnorm(24.85, 25.08, 0.05)
+
+#Ex: A nota de estatistica se distribui normalmente com media = 6.4
+#e dp = 0.8. Em uma sala com 80 alunos, quantos terão?
+
+#a) Nota < 5
+p = pnorm(5, 6.4, 0.8)
+p * 80
+
+#b) 5 >= nota >= 7.5
+(pnorm(7.5, 6.4, 0.8) - pnorm(5, 6.4, 0.8)) * 80
+
+#c) nota >7.5
+pnorm(7.5, 6.4, 0.8, F) * 80
+
+#Ex: A VA "Retornos do contrato futuro de soja na bolsa de Chicago"
+#(100 retornos) possui distribuição normal com media = 0.18 % ao dia
+#e dp = 1.17% ao dia.
+
+#a) qual P((0.18/100) >= retorno >= (2/100)) por dia?
+
+pnorm(2/100, 0.18/100, 1.17/100) - pnorm(0.18/100, 0.18/100, 1.17/100)
+
+#b) Qual P(retorno > 2/100)
+pnorm(2/100, 0.18/100, 1.17/100, F)
+
+#Ex:Uma cidade tem media = 170cm de altura dos jovens, com variancia = 36cm^2.
+
+#a) Qual P(x > 179cm) ?
+#Se variancia é 36cm^2, dp = 36^(1/2) -> dp = 6cm
+
+pnorm(179, 170, 6, F)
+
+#b) Qual altura que a probabilidade de encontrarmos valores menores que ela
+#seja 80%?
+qnorm(.8, 170, 6)
+
+#Ex: O tempo gasto no vestibular tem média = 120min e
+#dp = 15min
+
+#a) Qual P(x < 100 min)?
+pnorm(100, 120, 15)
+
+#b) Qual P(x) | 95% terminem no prazo estibulado?
+#Tenho porcentagem
+qnorm(.95, 120, 15)
+
+#N(220, 16)
+#Ou seja, media = 220, dp = 16^(1/2) -> 4
+#a) P(X <= k) = 0.01
+qnorm(.01, 220, 4)
