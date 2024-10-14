@@ -385,3 +385,20 @@ pnorm(920, 910, 22.36) - pnorm(860, 910, 22.36)
 #a) Qual P de usar p freio de emergencia? P(T < 0)
 pnorm(0, 20, 27.86)
 
+#Distribuição exponencial
+#Utilizada para modelar uma variedade de fenômenos aleatórios
+#relacionados a tempos de espera entre eventos
+
+#lambda = Taxa de eventos por unidade de tempo
+#x = unidade de medida de tempo que queremos saber a porcentagem
+#da ocorrencia
+
+#Função densidade de probabilidade
+#fx(x) = lambda * e^(-lambda * e)
+
+#Esperança = 1/lambda
+#Variancia = 1/(lambda)^2
+
+#Função de distribuição cumilativa
+#P(X <= x) = 1 - e^(-lambda * x) | x >= 0 & lambda > 0
+
