@@ -402,3 +402,52 @@ pnorm(0, 20, 27.86)
 #Função de distribuição cumilativa
 #P(X <= x) = 1 - e^(-lambda * x) | x >= 0 & lambda > 0
 
+#Ex: A duração de um telefonema, em minutos, seja a variavel aleatoria
+#exponencial com lambda = 1/5. Se alguém chegou antes de você.
+#a) Qual P(x = 5)?
+dexp(5, 1/5)
+
+#b) Qual P(x <= 5)?
+pexp(5, 1/5)
+
+#c) Qual P(x > 5)?
+pexp(5, 1/5, F)
+
+#d) Qual P(5 >= x >= 7)?
+pexp(7, 1/5) - pexp(5, 1/5)
+
+#Ex: O tempo de espera de um exame tem distribuição exponencial
+#com média = 3 dias.
+#a) Qual a P(x > 2 dias)?
+
+#Se a esperança é de 3 dias, lambda = 1/3, então.
+pexp(2, 1/3, F)
+
+#b) Qual P(2 >= x >= 4)?
+pexp(4, 1/3) - pexp(2, 1/3)
+
+#Ex: Sabendo que lambda = 2, determine:
+#a) P(x <= 0)
+pexp(0, 2)
+
+#b) P(x <= 1)
+pexp(1, 2)
+
+#c) P(x >= 2)
+pexp(2, 2, F)
+
+#d) P(1 < x < 2)
+pexp(2, 2) - pexp(1, 2)
+
+#e) P(X < x) = 0.05
+#Para esse, precisamos usar o qexp
+#Calcula o quantil correspondente a uma dada probabilidade
+qexp(0.05, 2)
+
+#Ex: Uma companhia fabrica lampadas especiais com uma duração média
+#de 100 horas e com distribuição exponencial.
+
+#a) Qual deve ser a garantia do fabricante para repor
+#apenas 5% da produção?
+#lambda = 1/media, ou seja, lambda = 1/100.
+qexp(0.05, 1/100)
