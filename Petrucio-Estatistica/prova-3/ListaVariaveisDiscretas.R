@@ -238,4 +238,85 @@ pbinom(1, 6, 1/2, F)
 #c) Ocorrer no máximo 3 coroas
 pbinom(3, 6, 1/2)
 
-#Questão 6: 
+#Questão 6: considere
+#f(x) = {cx^2 se 0 <= x <= 1, c se 1 < x <= 2}
+
+#Resposta: Integral de cx^2 indo de 0 a 1 + integral de c indo de 2 a 1
+#Que resulta em c = 3/4
+
+#Questão 7: 
+
+#Questão 8: Em fábrica hidráulica, sabe-se que 15% da produção tem algum defeito.
+
+#a) Em uma amostra de 10 tubulações, qual P(x <= 1) seja defeituosa?
+pbinom(1, 10, .15)
+
+#Questão 9: Em uma cidade, 70% da população são favoráveis a um certo projeto.
+#Se temos um grupo de 5 pessoas, qual P(x = 3) serem favoráveis ao projeto?
+dbinom(3, 5, .7)
+
+#Questão 10: Em média 6 clientes param para colocar gasolina por hora.
+
+#a) Qual P(x = 3 em uma hora)?
+dpois(3, 6)
+
+#b) Qual P(x <= 3 em uma hora)?
+ppois(3, 6)
+
+#c) Qual E(X), média e dp?
+
+#Média = lambda
+#Variância = lambda
+#Desvio padrão = lambda^(1/2)
+
+#media = 6
+#variancia = 6
+#dp = 2.44
+
+#Questão 11: Uma produção produz 10 itens defeituosos por hora. Encontre a
+#probabilidade que 4 ou menos sejam defeituosos numa retirada aleatória por hora.
+
+ppois(4, 10)
+
+#Questão 12: Uma indústria de tintas recebe em média 5 pedidos por hora.
+
+#a) QUal P(x > 2)?
+ppois(2, 5, F)
+
+#b) Em 8 horas, qual P(x = 50)?
+dpois(50, 5 * 8)
+
+#Questão 13: Uma moeda é lançada 5 vezes:
+#a) Construa a função de probabilidade f(x) = x * 1/2
+k13 <- 0:5
+dbinom(k13, 5, .5)
+
+#b) Construa a função de distribuição acumulada.
+pbinom(k13, 5, .5)
+
+#c) Qual a probabilidade de ocorrer 3 caras?
+dbinom(3, 5, .5)
+
+#d) Qual P(x >= 3)
+pbinom(2, 5, .5)
+
+#Questão 14: Um lojista mantém registros de vendas diárias em um aparelho.
+#O quadro a seguir mostra a distribuição de probabilidades do número de aparelhos
+#vendidos em uma semana. Se o lucro por unidade vendida é de R$(6 * 20).
+
+lucroporaparelho <- 6 * 20
+#a) Qual o lucro esperado de uma semana?
+E14 <- 0*.1 + 1 * .1 + 2*.2 + 3*.3 + 4*.2 + 5*.1
+E14 * lucroporaparelho #R = R$ 324,00
+
+#b) Qual o desvio padrão do lucro?
+DP14 <- sqrt(E14)
+DP14
+DPLucro <- DP14 * 120
+DPLucro
+
+#Questão 15: Dois adversários A e B disputam 8 partidas. A probabilidade de A
+#ganhar uma partida é 0.6 e não há empate. Qual é a probabilidade de A ganhar a
+#série?
+
+pbinom(4, 8, .6, F)
