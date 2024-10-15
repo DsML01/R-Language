@@ -451,3 +451,50 @@ qexp(0.05, 2)
 #apenas 5% da produção?
 #lambda = 1/media, ou seja, lambda = 1/100.
 qexp(0.05, 1/100)
+
+#Ex: Uma fábrica tem em média 3 falhas por dia em suas máquinas
+#Supondo que as falhas sigam a distribuição de poisson.
+#lambda = media = 3 -> para poisson
+
+#a) Qual P(x > 4)?
+ppois(4, lambda = 3, F)
+
+#b) Qual P(t > 8 horas)?
+#As falhas eram por dia, e queriamos por hora, por isso 8/24
+pexp(8, 3/24, F)
+pexp(8/24, 3, F)
+
+#Ex: Um call center recebe, em média, 15 chamadas por hora.
+#Assumindo que seja uma distribuição de poisson, calcule:
+
+#a) P(10 chamadas < 40 min)
+dpois(10, 40/60 * 15)
+
+#b) A probabilidade que o tempo até a próxima chamada seja
+#superior a 5 minutos
+pexp(5/60, 15, F)
+
+#Ex: Uma empresa está acompanhando o tempo útil das lampadas
+#a média delas é 100 horas
+
+#lambda = 1/100
+
+#a) Qual P(0 < t <= 10)?
+
+pexp(10, 1/100) - pexp(0, 1/100)
+
+#b) Qual P(100 < t <= 110)?
+pexp(110, 1/100) - pexp(100, 1/100)
+
+#c) Qual probabilidade de uma lampada queimar no intervalo
+#entre 100 e 110 horas, sabendo que já durou 100 horas?
+
+#Probabilidade condicional
+
+#P(A|B) = P(A intersection B)/P(B)
+#P(100 < t <= 110)/P(t > 100)
+#Utilizamos t > 100 por causa que estamos lidando com o caso
+#dele durar mais de 100 horas
+
+
+(pexp(110, 1/100) - pexp(100, 1/100))/(pexp(100, 1/100,F))
