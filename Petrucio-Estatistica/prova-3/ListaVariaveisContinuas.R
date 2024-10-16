@@ -500,3 +500,63 @@ nova_media152 <- 70 * 6
 nova_dp152 <- sqrt(6 * 10^2)
 
 pnorm(500, nova_media152, nova_dp152, F)
+
+#Questão 16: O lucro diário de uma corretora é dado por L = 2 LA + 5 LI + 3 LC.
+#LA, LI e LC são os lucros diários nos setores da agricultura, indústria e comercio.
+#As disrtibuições são LA ~N(3, 4), LI ~N(6,9) e LC ~N(4, 16).
+#Supondo a independencia entre esses 3 setores, calcule:
+
+#a) Qual a distribuição normal do lucro dos três setores?
+
+nova_media16 <- 2 * 3 + 5 * 6 + 3 * 4
+nova_variancia16 <- 2^2 * 4 + 5^2 * 9 + 3^2 * 16
+nova_dp16 <- sqrt(nova_variancia16)
+
+nova_media16
+nova_variancia16
+nova_dp16
+
+#b) Qual a probabilidade de um lucro diário acima de 50000?
+pnorm(50, nova_media16, nova_dp16,F)
+
+#Questão 17: Após uma pesquisa, você nota que o tempo necessário para uma bacteria
+#se reproduzir é uma distribuição exponencial com média de 10 minutos.
+
+#a) Qual P(t < 7)?
+pexp(7, 1/10)
+
+#b) P(5 <= t <= 8)?
+pexp(8, 1/10) - pexp(5, 1/10)
+
+#c) O valor esperado e variância para o tempo de reprodução dessa bactéria?
+#E(X) = 1/10
+#Var = 1/10^2
+
+#Questão 18: Suponha que as medidas da corrente elétrica em pedaço de fio sigam
+#distribuição normal com média = 10 miliamperes e var = 4 miliamperes
+
+dp18 <- sqrt(4)
+
+#a) Qual P(t > 13) ?
+pnorm(13, 10, dp18,F)
+
+#b) Qual p(9 >= t >= 11)
+pnorm(11, 10, dp18) - pnorm(9, 10, dp18)
+
+#c) Qual a probabilidade de uma medida da corrente estar abaixo desse valor seja
+#0.98
+
+qnorm(.98, 10, dp18)
+
+#Questão 19: Um elevador bloqueia se sua carga for superior a 450kg.
+#adultos com um média = 70kg e dp = 15kg.
+#Qual a probabilidade de bloqueio ao trasnportar 6 adultos?
+
+num_pessoas19 <- 6
+dp19 <- 15
+new_media19 = num_pessoas19 * 70
+new_dp19 <- sqrt(num_pessoas19 * dp19^2)
+
+pnorm(450, new_media19, new_dp19, F)
+
+#Questão 20:
